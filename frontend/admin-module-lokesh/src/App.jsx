@@ -2,33 +2,45 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import AdminLayout from "./layouts/AdminLayout";
 import ClientLayout from "./layouts/ClientLayout";
+import TrackingReport from "./pages/client/TrackingReport";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import ClientDashboard from "./pages/client/ClientDashboard";
-
 import Projects from "./pages/admin/Projects";
+
+import Dashboard from "./pages/client/Dashboard";
+import DailyReport from "./pages/client/DailyReport";
+import MonthlyReport from "./pages/client/MonthlyReport";
+import Reports from "./pages/client/Reports";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* REDIRECT ROOT */}
+        {/* ROOT */}
         <Route path="/" element={<Navigate to="/admin/dashboard" />} />
 
         {/* ADMIN ROUTES */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" element={<AdminDashboard />} />
-
           <Route path="projects" element={<Projects />} />
         </Route>
-      <Route path="/client" element={<ClientLayout />}>
-      <Route path="dashboard" element={<ClientDashboard />} />
-      </Route>
-        {/* FALLBACK (VERY IMPORTANT) */}
-        <Route path="*" element={<Navigate to="/admin/dashboard" />} />
-      </Routes>
-      
 
+        {/* CLIENT ROUTES */}
+       <Route path="/client" element={<ClientLayout />}>
+  <Route path="dashboard" element={<Dashboard />} />
+  <Route path="reports/tracking" element={<TrackingReport />} />
+  <Route path="reports/monthly" element={<MonthlyReport />} />
+  <Route path="reports" element={<Reports />} />
+
+</Route>
+
+
+
+        {/* FALLBACKS */}
+        <Route path="/client/*" element={<Navigate to="/client/dashboard" />} />
+        <Route path="/admin/*" element={<Navigate to="/admin/dashboard" />} />
+        <Route path="*" element={<Navigate to="/client/dashboard" />} />
+      </Routes>
     </BrowserRouter>
   );
 }

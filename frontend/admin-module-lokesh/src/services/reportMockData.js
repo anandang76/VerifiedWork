@@ -106,3 +106,42 @@ export const KPI_SUMMARY = {
   estimatedHoursRemaining: "18 hrs",
   avgTaskTime: "1.4 hrs",
 };
+// 🔥 GRID-READY SCREENSHOTS (Worksnaps-style)
+export const MOCK_SCREENSHOT_GRID = [
+  {
+    id: "s1",
+    hour: 9,
+    slot: "00-10",
+    time: "09:05",
+    activity: 92,
+    app: "vscode",
+    img: "https://placehold.co/300x200/png?text=VS+Code",
+  },
+  {
+    id: "s2",
+    hour: 9,
+    slot: "10-20",
+    time: "09:15",
+    activity: 88,
+    app: "stackoverflow",
+    img: "https://placehold.co/300x200/png?text=StackOverflow",
+  },
+  {
+    id: "s3",
+    hour: 9,
+    slot: "20-30",
+    time: "09:25",
+    activity: 45,
+    app: "slack",
+    img: "https://placehold.co/300x200/png?text=Slack",
+  },
+  {
+    id: "s4",
+    hour: 10,
+    slot: "00-10",
+    time: "10:05",
+    activity: 95,
+    app: "terminal",
+    img: "https://placehold.co/300x200/png?text=Terminal",
+  },
+];
