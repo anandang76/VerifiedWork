@@ -34,7 +34,7 @@ import {
 } from "../../services/reportMockData";
 
 
-const AnalyticsDashboard = () => {
+const ClientDashboard = () => {
   const [exporting, setExporting] = useState(false);
   const reportRef = useRef(null);
 
@@ -156,4 +156,4 @@ const AnalyticsDashboard = () => {
   );
 };
 
-export default CLientDashboard;
+export default ClientDashboard;
