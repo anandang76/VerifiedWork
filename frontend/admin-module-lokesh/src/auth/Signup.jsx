@@ -1,7 +1,9 @@
 import logo from "../assets/app-logos/logo.png";
+import bgImage from "../assets/background.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "./authService";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Signup() {
   const [form, setForm] = useState({ role: "client" });
@@ -13,169 +15,116 @@ export default function Signup() {
   };
 
   return (
-    <>
-      {/* FIXED HEADER */}
-      <div className="w-full
-                bg-gray-100 dark:bg-[#0B1220]">
+    <div
+      className="min-h-screen bg-fixed bg-center bg-cover"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <div className="min-h-screen bg-black/60 flex flex-col">
 
-        <div className="flex items-start justify-between px-4 py-4">
+        {/* HEADER */}
+        <div className="w-full px-6 py-4 flex justify-between items-center">
+          <img src={logo} alt="VerifiedWork" className="h-10" />
+          <div className="text-right text-sm text-white">
+            <p className="font-medium">📞 +91 90000 00000</p>
+            <p>✉️ info@verifiedwork.com</p>
+          </div>
+        </div>
 
-          {/* LEFT EXTREME: LOGO */}
-          <img
-            src={logo}
-            alt="VerifiedWork"
-            className="h-20 object-contain"
-          />
+        {/* CONTENT */}
+        <div className="flex-1 px-6 py-16">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
 
-          {/* RIGHT EXTREME: CONTACT INFO */}
-          <div className="text-right text-base text-gray-700 dark:text-gray-300">
-            <p className="font-medium flex items-center justify-end gap-2">
-              📞 +91 90000 00000
-            </p>
-            <p className="flex items-center justify-end gap-2">
-              ✉️ info@verifiedwork.com
-            </p>
+            {/* LEFT */}
+            <div className="hidden md:flex flex-col justify-center text-white">
+              <h1 className="text-4xl font-bold mb-4">
+                Join VerifiedWork Today
+              </h1>
+              <p className="text-lg text-gray-200 mb-6">
+                Manage freelancers, track productivity, and pay only
+                for actual hours worked.
+              </p>
+              <ul className="space-y-3 text-gray-200">
+                <li>✔ Time tracking with proof</li>
+                <li>✔ Transparent freelancer management</li>
+                <li>✔ Built for remote teams</li>
+              </ul>
+            </div>
+
+            {/* RIGHT CARD */}
+            <div className="flex justify-center">
+              <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-8">
+
+                <h2 className="text-2xl font-bold text-center mb-1">
+                  Create Account
+                </h2>
+                <p className="text-sm text-gray-500 text-center mb-6">
+                  Get started in minutes
+                </p>
+
+                {/* GOOGLE ONLY */}
+                <div className="mb-5">
+                  <button className="w-full flex items-center justify-center gap-3 border rounded-lg py-2 hover:bg-gray-50 transition">
+                    <FcGoogle size={20} />
+                    Continue with Google
+                  </button>
+                </div>
+
+                <div className="flex items-center my-5">
+                  <div className="flex-1 h-px bg-gray-300"></div>
+                  <span className="px-3 text-sm text-gray-500">OR</span>
+                  <div className="flex-1 h-px bg-gray-300"></div>
+                </div>
+
+                <input
+                  className="w-full p-3 border rounded-lg mb-3"
+                  placeholder="Email"
+                  onChange={(e) =>
+                    setForm({ ...form, email: e.target.value })
+                  }
+                />
+
+                <input
+                  type="password"
+                  className="w-full p-3 border rounded-lg mb-3"
+                  placeholder="Password"
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                />
+
+                <select
+                  className="w-full p-3 border rounded-lg mb-3"
+                  onChange={(e) =>
+                    setForm({ ...form, role: e.target.value })
+                  }
+                >
+                  <option value="client">Client</option>
+                  <option value="admin">Admin</option>
+                </select>
+
+                <button
+                  onClick={handleSignup}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg"
+                >
+                  Sign Up
+                </button>
+
+                <p className="text-sm text-center mt-4">
+                  Already have an account?{" "}
+                  <span
+                    onClick={() => navigate("/login")}
+                    className="text-blue-600 cursor-pointer hover:underline"
+                  >
+                    Login
+                  </span>
+                </p>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-
-      {/* PAGE CONTENT */}
-      <div className="min-h-screen bg-gray-100 dark:bg-[#0B1220]
-                      px-4 py-10 pt-52">
-
-        {/* SIGNUP CARD */}
-        <div className="max-w-md mx-auto bg-white dark:bg-[#111A2E]
-                        rounded-xl shadow-lg p-8">
-
-          {/* BRAND TEXT */}
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Freelance Manager
-            </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Manage projects, productivity & teams
-            </p>
-          </div>
-
-          {/* FORM */}
-          <h2 className="text-lg font-semibold mb-4 
-                         text-gray-700 dark:text-gray-200">
-            Create Account
-          </h2>
-
-          <input
-            className="w-full p-3 rounded-lg border 
-                       bg-gray-50 dark:bg-[#1E293B]
-                       text-gray-900 dark:text-white
-                       border-gray-300 dark:border-gray-700
-                       focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Email"
-            onChange={(e) =>
-              setForm({ ...form, email: e.target.value })
-            }
-          />
-
-          <input
-            type="password"
-            className="w-full p-3 rounded-lg border mt-3
-                       bg-gray-50 dark:bg-[#1E293B]
-                       text-gray-900 dark:text-white
-                       border-gray-300 dark:border-gray-700
-                       focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Password"
-            onChange={(e) =>
-              setForm({ ...form, password: e.target.value })
-            }
-          />
-
-          <select
-            className="w-full p-3 rounded-lg border mt-3
-                       bg-gray-50 dark:bg-[#1E293B]
-                       text-gray-900 dark:text-white
-                       border-gray-300 dark:border-gray-700
-                       focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onChange={(e) =>
-              setForm({ ...form, role: e.target.value })
-            }
-          >
-            <option value="client">Client</option>
-            <option value="admin">Admin</option>
-          </select>
-
-          <button
-            onClick={handleSignup}
-            className="w-full mt-6 py-3 rounded-lg
-                       bg-blue-600 hover:bg-blue-700
-                       text-white font-medium transition"
-          >
-            Sign Up
-          </button>
-
-          {/* FOOTER */}
-          <div className="text-center mt-4 text-sm">
-            <span className="text-gray-500 dark:text-gray-400">
-              Already have an account?
-            </span>{" "}
-            <span
-              onClick={() => navigate("/login")}
-              className="text-blue-600 dark:text-blue-400 cursor-pointer hover:underline"
-            >
-              Login
-            </span>
-          </div>
-        </div>
-
-        {/* FEATURES SECTION */}
-        <div className="mt-24 max-w-6xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center mb-12
-                         text-gray-800 dark:text-white">
-            Features & Benefits
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <Feature
-              title="Track Time with Proof"
-              desc="Automatically track work hours and activity with visual proof."
-            />
-            <Feature
-              title="See Work in Real Time"
-              desc="Monitor progress instantly without waiting for reports."
-            />
-            <Feature
-              title="Accurate Payments"
-              desc="Pay only for actual hours worked with confidence."
-            />
-            <Feature
-              title="Stay Productive"
-              desc="Clear visibility helps teams stay focused and efficient."
-            />
-            <Feature
-              title="Team Friendly"
-              desc="Works smoothly with project management workflows."
-            />
-            <Feature
-              title="Built for Remote Work"
-              desc="Designed specifically for freelancers and remote teams."
-            />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-function Feature({ title, desc }) {
-  return (
-    <div className="bg-white dark:bg-[#111A2E]
-                    p-6 rounded-lg shadow
-                    text-center">
-      <h3 className="font-semibold text-lg mb-2
-                     text-gray-800 dark:text-white">
-        {title}
-      </h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        {desc}
-      </p>
     </div>
   );
 }
