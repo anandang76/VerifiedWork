@@ -26,7 +26,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         {/* ROOT */}
-        <Route path="/" element={<Navigate to="/client/dashboard" />} />
+        <Route path="/" element={<Navigate to="/signup" />} />
 
         {/* AUTH */}
         <Route path="/login" element={<Login />} />
@@ -49,12 +49,9 @@ export default function App() {
           <Route path="reports" element={<Reports />} />
         </Route>
 
-        {/* FALLBACKS */}
-        <Route path="/client/*" element={<Navigate to="/client/dashboard" />} />
-        <Route path="/admin/*" element={<Navigate to="/admin/dashboard" />} />
-        <Route path="*" element={<Navigate to="/client/dashboard" />} />
+        {/* FALLBACK */}
+        <Route path="*" element={<Navigate to="/signup" />} />
       </Routes>
-      
     </BrowserRouter>
   );
 }
